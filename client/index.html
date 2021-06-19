@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/flv.js/1.5.0/flv.min.js"></script>
+    <script src="stream.js"></script>
+    <script src="search.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="main-body">
+        <div class="wrapper">
+            <div class="video-container">
+                <video muted="true" controls autoplay width="1026" height="578" id="videoElement"></video>
+            </div>
+        </div>
+        <div class="watchers">
+            <h1 id="watching-header">Users watching:</h1>
+            <b>
+                <p id="watching"></p>
+            </b>        
+        </div>
+        <div class="info">
+            <h1 id="streamer-header">HelloWorld</h1>
+            <p id="streamer">Streaming on: yes</p>
+        </div>
+    </div>
+    <footer id="footer">© Copyright <b>ThingyTV</b> 2021-2022</footer>
+</body>
+<script>
+    var username = ""
+    while (true) {
+        username = prompt("Enter your username: ")
+        if (username) break
+    }
+
+    const origin = window.location.hostname
+
+    var channelParam = getURLParams('live') != null ? getURLParams('live') : "HelloWorld"
+    var headerEleme = document.getElementById('streamer-header')
+    headerEleme.innerHTML = channelParam
+
+    var videoElement = document.getElementById('videoElement');
+    // 4206, 2496
+    initialize_websocket('ws://' + origin + ':4206', document.getElementById('watching'), channelParam)
+    play(videoElement, 'ws://' + origin + ':2496/live/' + channelParam + '.flv', username, channelParam)
+</script>
+</html>

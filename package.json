@@ -1,0 +1,19 @@
+{
+  "name": "mediastream",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "http": "^0.0.1-security",
+    "md5": "^2.3.0",
+    "node-media-server": "^2.2.8",
+    "websocket": "^1.0.34"
+  }
+}
